@@ -1,4 +1,5 @@
-In my case py.test fails to collect tests because import of modules fails. The failure comes in following steps:
+# Test case 1
+In this case py.test fails to collect tests because import of modules fails. The failure comes in following steps:
 
 1. I'm on Windows, py.test is a part of Anaconda scientific installation. Cannot use pip for upgrades. 
 2. My current folder is D:\mwe-pytest-in-package\setting_1 
@@ -22,3 +23,11 @@ E   ImportError: cannot import name 'foo'
 - For some reason py.test fails to import a module ```code``` while colleting a test ```test_foo.py```. 
 - Googling and StackOverflow were not much help yet.
 - Note that ```python code.py``` and ```python test_foo.py``` run without error. 
+
+##Solution
+Adding current working directory to PYTHONPATH helped starting py.test: ```set "PYTHONPATH=D:\mwe-pytest-in-package\setting_1"``
+
+Remaining questions:
+
+- other way of making py.test do the imports?
+- why python interpreter does imports modules OK and py.test doesn't?
