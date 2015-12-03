@@ -1,8 +1,8 @@
 # Test case 1
 In this case py.test fails to collect tests because import of modules fails. The failure comes in following steps:
 
-1. I'm on Windows, py.test is a part of Anaconda scientific installation. Cannot use pip for upgrades. 
-2. My current folder is D:\mwe-pytest-in-package\setting_1 
+1. I'm on Windows, py.test is a part of Anaconda scientific installation. Cannot use pip for upgrades.
+2. My current folder is D:\mwe-pytest-in-package\setting_1
 3. Run ```py.test```
 4. Getting the following:
 
@@ -20,12 +20,12 @@ E   ImportError: cannot import name 'foo'
 =========================== 1 error in 0.08 seconds ===========================
 ```
 
-- For some reason py.test fails to import a module ```code``` while colleting a test ```test_foo.py```. 
+- For some reason py.test fails to import a module ```code``` while colleting a test ```test_foo.py```.
 - Googling and StackOverflow were not much help yet.
-- Note that ```python code.py``` and ```python test_foo.py``` run without error. 
+- Note that ```python code.py``` and ```python test_foo.py``` run without error.
 
 ##Solution
-Adding current working directory to PYTHONPATH helped starting py.test: 
+Adding current working directory to PYTHONPATH helped starting py.test:
 
 ```set "PYTHONPATH=D:\mwe-pytest-in-package\setting_1"``
 
@@ -33,3 +33,24 @@ Remaining questions:
 
 - other way of making py.test do the imports?
 - why python interpreter does imports modules OK and py.test doesn't?
+
+##Answer
+
+- One problem I found was that you're importing the module ``code`` if you type
+  in another shell the following, there's actually a module called code
+  in the standard library:
+
+  C:\Users\Gabriele\Anaconda3\lib\code.py
+
+- One solution would be for example to rename the module to something else,
+  for example code1.py, or hide it behind a package, so you can access it by
+  its full name ``mypackage.code``:
+```
+  mypackage/
+    __init__.py
+    code.py
+```
+
+- As for why is this happening with pytest and not with calling the module
+  directly has to do with absolute imports (``import something``). Apparently
+  the "import priority" work differently when run as-a-script. 
