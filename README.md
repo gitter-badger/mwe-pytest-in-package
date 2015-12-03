@@ -53,4 +53,8 @@ Remaining questions:
 
 - As for why is this happening with pytest and not with calling the module
   directly has to do with absolute imports (``import something``). Apparently
-  the "import priority" work differently when run as-a-script. 
+  the "import priority" work differently when run as-a-script, and by setting
+  the PYTHONPATH you're making the priority higher for the modules in the
+  current directory.
+
+You can test in the ``setting_2`` directory if this is working properly.
