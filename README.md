@@ -26,6 +26,7 @@ E   ImportError: cannot import name 'foo'
 
 ##Solution
 Adding current working directory to PYTHONPATH helped starting py.test: 
+
 ```set "PYTHONPATH=D:\mwe-pytest-in-package\setting_1"``
 
 Remaining questions:
