@@ -1,4 +1,6 @@
 # Test case 1
+
+[![Join the chat at https://gitter.im/epogrebnyak/mwe-pytest-in-package](https://badges.gitter.im/epogrebnyak/mwe-pytest-in-package.svg)](https://gitter.im/epogrebnyak/mwe-pytest-in-package?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 In this case py.test fails to collect tests because import of modules fails. The failure comes in following steps:
 
 1. I'm on Windows, py.test is a part of Anaconda scientific installation. Cannot use pip for upgrades.
